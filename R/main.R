@@ -11,6 +11,11 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 		gadgetTitleBar("My Gadget"),
 		miniContentPanel(
 			# Define layout, inputs, outputs
+			textInput("text1",
+								"Label text 1",
+								value = "",
+								placeholder = "write here"
+			)
 		)
 	)
 
@@ -19,7 +24,7 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 
 		# When the Done button is clicked, return a value
 		observeEvent(input$done, {
-			returnValue <- "test OK"
+			returnValue <- input$text1
 			stopApp(returnValue)
 		})
 	}
@@ -30,6 +35,7 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 
 # Usage example -------------------------------------------------------------------
 
+rm(a)
 a <- myGadgetFunc()
 a
 
