@@ -1,11 +1,8 @@
-# Libraries ---------------------------------------------------------------
-
-library(shiny)
-library(miniUI)
-
 # Definition --------------------------------------------------------------
 
-myGadgetFunc <- function(inputValue1, inputValue2) {
+myGadgetFunc <- function() {
+	library(shiny)
+	library(miniUI)
 
 	ui <- miniPage(
 		gadgetTitleBar("My Gadget"),
@@ -15,6 +12,12 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 								"Label text 1",
 								value = "",
 								placeholder = "write here"
+			),
+			selectInput(inputId = "select2",
+									label = "Label select 2",
+									choices = list(A = "choice1:A",
+																 B = "choice2:B"),
+									selected = "choice1:A"
 			)
 		)
 	)
@@ -24,7 +27,11 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 
 		# When the Done button is clicked, return a value
 		observeEvent(input$done, {
-			returnValue <- input$text1
+			concatAll <- paste("Input fields are:",
+												 input$text1,
+												 input$select2,
+												 sep = " ")
+			returnValue <- concatAll
 			stopApp(returnValue)
 		})
 	}
@@ -32,11 +39,15 @@ myGadgetFunc <- function(inputValue1, inputValue2) {
 	runGadget(ui, server)
 }
 
+myAddinGadget <- function() {
+	returnValue <- myGadgetFunc()
+	cat(returnValue)
+}
 
 # Usage example -------------------------------------------------------------------
 
-rm(a)
-a <- myGadgetFunc()
-a
+# rm(a)
+# a <- myGadgetFunc()
+# a
 
 

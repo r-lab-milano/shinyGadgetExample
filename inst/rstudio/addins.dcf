@@ -1,0 +1,4 @@
+Name: Shiny Gadget Addin
+Description: Shiny Gadget Addin Example
+Binding: myAddinGadget
+Interactive: true
